@@ -213,6 +213,20 @@ if ([string]::IsNullOrEmpty($EnvironmentName)) {
     TO BE IMPLEMENTED
   #>
 }
+else {
+  # Construct environment name from GitHub repo and ref (result: <repo>-<branch>)
+  if ((-not [string]::IsNullOrEmpty($GitHubRepo))) {
+    $EnvironmentName = `
+      $GitHubRepo.Split('/')[1] + '-' + `
+      $EnvironmentName
+    Write-Host "Environment name: $EnvironmentName"
+  }
+
+  # Construct environment name from Azure DevOps (result: <repo>-<branch>)
+  <#
+    TO BE IMPLEMENTED
+  #>
+}
 
 # Load functions
 Write-Host "Loading functions..."
