@@ -11,21 +11,21 @@ name: 1 - Management Groups
 
 on:
   workflow_dispatch:
-    inputs:
-      environmentName:
-        type: string
-        description: Environment name (optional), e.g. CanadaPubSecALZ-main
-        required: false
 
 defaults:
   run:
     shell: pwsh
     working-directory: scripts/deployments
 
+env:
+  ENVIRONMENT_NAME: ${{ github.ref == 'refs/heads/main' && 'main' || 'lab'}}
+
 jobs:
   management-groups:
     name: Management Groups
     runs-on: ubuntu-latest
+    environment: ${{ github.ref == 'refs/heads/main' && 'main' || 'lab'}}
+    
     steps:
 
     - name: Checkout
@@ -36,11 +36,11 @@ jobs:
         Install-Module Az -Force
         Install-Module powershell-yaml -Force
 
-    - name: Deploy Management Groups
+    - name: Deploy Management Groups 
       run: |
         ./RunWorkflows.ps1 `
           -DeployManagementGroups `
-          -EnvironmentName '${{github.event.inputs.environmentName}}' `
-          -LoginServicePrincipalJson (ConvertTo-SecureString -String '${{secrets.ALZ_CREDENTIALS}}' -AsPlainText -Force) `
+          -EnvironmentName '${{env.ENVIRONMENT_NAME}}' `
+          -LoginServicePrincipalJson (ConvertTo-SecureString -String '${{secrets.ALZ_SPN_CREDENTIALS}}' -AsPlainText -Force) `
           -GitHubRepo ${env:GITHUB_REPOSITORY} `
           -GitHubRef ${env:GITHUB_REF}
