@@ -52,6 +52,6 @@ jobs:
           -DeployRoles `
           -RoleNames '${{ matrix.roleName }}' `
           -EnvironmentName '${{env.ENVIRONMENT_NAME}}' `
-          -LoginServicePrincipalJson (ConvertTo-SecureString -String '${{secrets.ALZ_CREDENTIALS}}' -AsPlainText -Force) `
+          -LoginServicePrincipalJson (ConvertTo-SecureString -String '${{secrets.ALZ_SPN_CREDENTIALS}}' -AsPlainText -Force) `
           -GitHubRepo ${env:GITHUB_REPOSITORY} `
           -GitHubRef ${env:GITHUB_REF}
