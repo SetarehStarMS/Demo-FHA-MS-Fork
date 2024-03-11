@@ -13,7 +13,7 @@ targetScope = 'managementGroup'
 param assignableMgId string
 
 var scope = tenantResourceId('Microsoft.Management/managementGroups', assignableMgId)
-var roleName = 'Custom - Security Operations (SecOps)'
+var roleName = 'Custom - Security Operations (SecOps) - ${assignableMgId}'
 var roleDescription = 'Security Administrator role with a horizontal view across the entire Azure estate and the Azure Key Vault purge policy.'
 
 // Telemetry - Azure customer usage attribution
