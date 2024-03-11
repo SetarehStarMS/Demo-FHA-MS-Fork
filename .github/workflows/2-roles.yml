@@ -11,16 +11,14 @@ name: 2 - Roles
 
 on:
   workflow_dispatch:
-    inputs:
-      environmentName:
-        type: string
-        description: Environment name (optional), e.g. CanadaPubSecALZ-main
-        required: false
 
 defaults:
   run:
     shell: pwsh
     working-directory: scripts/deployments
+
+env:
+  ENVIRONMENT_NAME: ${{ github.ref == 'refs/heads/main' && 'main' || 'lab'}}
 
 jobs:
   roles:
@@ -37,6 +35,7 @@ jobs:
       fail-fast: false
 
     runs-on: ubuntu-latest
+    environment: ${{ github.ref == 'refs/heads/main' && 'main' || 'lab'}}
     steps:
 
     - name: Checkout
@@ -52,7 +51,7 @@ jobs:
         ./RunWorkflows.ps1 `
           -DeployRoles `
           -RoleNames '${{ matrix.roleName }}' `
-          -EnvironmentName '${{github.event.inputs.environmentName}}' `
+          -EnvironmentName '${{env.ENVIRONMENT_NAME}}' `
           -LoginServicePrincipalJson (ConvertTo-SecureString -String '${{secrets.ALZ_CREDENTIALS}}' -AsPlainText -Force) `
           -GitHubRepo ${env:GITHUB_REPOSITORY} `
           -GitHubRef ${env:GITHUB_REF}

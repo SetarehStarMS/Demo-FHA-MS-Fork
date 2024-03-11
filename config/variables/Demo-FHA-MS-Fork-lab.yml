@@ -53,8 +53,8 @@ variables:
                 }
               ]
     }
-  #var-logging-region: canadacentral
-  #var-identity-configurationFileName: identity.parameters.json
-  #var-identity-region: canadacentral
-  #var-identity-subscriptionId: f6276be4-3aa6-4b70-a1b0-60656adf4293
+  # var-logging-region: canadacentral
+  # var-identity-configurationFileName: identity.parameters.json
+  # var-identity-region: canadacentral
+  # var-identity-subscriptionId: f6276be4-3aa6-4b70-a1b0-60656adf4293
 
