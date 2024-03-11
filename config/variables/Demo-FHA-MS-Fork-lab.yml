@@ -10,7 +10,7 @@ variables:
   #var-logging-managementGroupId: Management
   #var-logging-subscriptionId: b0069425-e844-43a5-a430-ce4b3e6b5193
   deploymentRegion: canadacentral
-  #var-NHA-managementGroupId: BCHealth-NorthernHealth
+  var-FHA-managementGroupId: BCHealth-Sbox-FraserHealth
   #var-BCH-managementGroupId: BCHealth
   #var-identity-managementGroupId: BCHealth-NorthernHealth-Platform
   #var-logging-diagnosticSettingsforNetworkSecurityGroupsStoragePrefix: pubsecnsg
