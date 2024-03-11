@@ -13,7 +13,7 @@ targetScope = 'managementGroup'
 param assignableMgId string
 
 var scope = tenantResourceId('Microsoft.Management/managementGroups', assignableMgId)
-var roleName = 'Custom - Log Analytics - Read Only for VM Insights'
+var roleName = 'Custom - Log Analytics - Read Only for VM Insights - ${assignableMgId}'
 var roleDescription = 'Read only access to Log Analytics for VM Insights.'
 
 // Telemetry - Azure customer usage attribution

@@ -13,7 +13,7 @@ targetScope = 'managementGroup'
 param assignableMgId string
 
 var scope = tenantResourceId('Microsoft.Management/managementGroups', assignableMgId)
-var roleName = 'Custom - Network Operations (NetOps)'
+var roleName = 'Custom - Network Operations (NetOps) - ${assignableMgId}'
 var roleDescription = 'Platform-wide global connectivity management: virtual networks, UDRs, NSGs, NVAs, VPN, Azure ExpressRoute, and others.'
 
 // Telemetry - Azure customer usage attribution
