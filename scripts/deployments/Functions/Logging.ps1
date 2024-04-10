@@ -60,15 +60,15 @@ function Set-Logging {
   Write-Output "Validation JSON parameter configuration using $SchemaFilePath"
   Get-Content -Raw $ConfigurationFilePath | Test-Json -SchemaFile $SchemaFilePath
 
-  Write-Output "Moving Subscription ($SubscriptionId) to Management Group ($ManagementGroupId)"
-  New-AzManagementGroupDeployment `
-    -ManagementGroupId $ManagementGroupId `
-    -Location $Context.DeploymentRegion `
-    -TemplateFile "$($Context.WorkingDirectory)/landingzones/utils/mg-move/move-subscription.bicep" `
-    -TemplateParameterObject @{
-      managementGroupId = $ManagementGroupId
-      subscriptionId = $SubscriptionId
-    }
+  # Write-Output "Moving Subscription ($SubscriptionId) to Management Group ($ManagementGroupId)"
+  # New-AzManagementGroupDeployment `
+  #   -ManagementGroupId $ManagementGroupId `
+  #   -Location $Context.DeploymentRegion `
+  #   -TemplateFile "$($Context.WorkingDirectory)/landingzones/utils/mg-move/move-subscription.bicep" `
+  #   -TemplateParameterObject @{
+  #     managementGroupId = $ManagementGroupId
+  #     subscriptionId = $SubscriptionId
+  #   }
 
   Write-Output "Deploying Logging to $SubscriptionId in $Region with $ConfigurationFilePath"
   New-AzSubscriptionDeployment `
