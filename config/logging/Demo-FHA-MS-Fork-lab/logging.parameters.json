@@ -30,7 +30,7 @@
           "Canada Central",
           "Canada East"
         ],
-        "resourceGroupName": "service-health-alerts-rg",
+        "resourceGroupName": "service-health-alerts-lab-rg",
         "actionGroupName": "Logging Alerts",
         "actionGroupShortName": "logging-ag",
         "incidentTypes": [
@@ -51,7 +51,7 @@
         {
           "comments": "Built-in Contributor Role",
           "securityGroupObjectIds": [
-            "9e16fb9d-7ea4-43fb-a92c-a5dbe308f921"
+            
           ],
           "roleDefinitionId": "b24988ac-6180-42a0-ab88-20f7382dd24c"
         }
@@ -78,13 +78,13 @@
       }
     },
     "logAnalyticsResourceGroupName": {
-      "value": "pubsec-central-logging"
+      "value": "pubsec-central-logging-lab-rg"
     },
     "logAnalyticsWorkspaceName": {
       "value": "log-analytics-workspace"
     },
     "logAnalyticsRetentionInDays": {
-      "value": 730
+      "value": 30
     },
     "logAnalyticsAutomationAccountName": {
       "value": "automation-account"
