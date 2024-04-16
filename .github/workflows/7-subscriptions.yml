@@ -17,15 +17,14 @@ on:
         type: string
         description: Subscription ID(s), e.g. "abcd", "1234"
         required: true
-      environmentName:
-        type: string
-        description: Environment name (optional), e.g. CanadaPubSecALZ-main
-        required: false
-
+     
 defaults:
   run:
     shell: pwsh
     working-directory: scripts/deployments
+
+env:
+  ENVIRONMENT_NAME: ${{ github.ref == 'refs/heads/main' && 'main' || 'lab'}}
 
 jobs:
   SubscriptionMatrix:
@@ -34,6 +33,7 @@ jobs:
     name: Create subscription deployment(s) as matrix
     
     runs-on: ubuntu-latest
+    environment: ${{ github.ref == 'refs/heads/main' && 'main' || 'lab'}}
     
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
@@ -60,6 +60,7 @@ jobs:
     name: Subscriptions
 
     runs-on: ubuntu-latest
+    environment: ${{ github.ref == 'refs/heads/main' && 'main' || 'lab'}}
 
     strategy:
       matrix: ${{fromJSON(needs.SubscriptionMatrix.outputs.matrix)}}
@@ -78,7 +79,7 @@ jobs:
       run: |
         ./RunWorkflows.ps1 `
           -DeploySubscriptionIds '${{ matrix.subscriptionId }}' `
-          -EnvironmentName '${{github.event.inputs.environmentName}}' `
-          -LoginServicePrincipalJson (ConvertTo-SecureString -String '${{secrets.ALZ_CREDENTIALS}}' -AsPlainText -Force) `
+          -EnvironmentName '${{env.ENVIRONMENT_NAME}}' `
+          -LoginServicePrincipalJson (ConvertTo-SecureString -String '${{secrets.ALZ_SPN_CREDENTIALS}}' -AsPlainText -Force) `
           -GitHubRepo ${env:GITHUB_REPOSITORY} `
           -GitHubRef ${env:GITHUB_REF}
