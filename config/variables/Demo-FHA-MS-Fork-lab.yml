@@ -7,7 +7,7 @@ variables:
   #var-vhubnetwork-nva-configurationFileName: vwan-nva/vwan-nva.parameters.json
   #var-hubnetwork-subscriptionId: 1b824d8b-d6c3-4625-b7f7-19f5f9cf3f37
   #var-hubnetwork-azfwPolicy-configurationFileName: hub-azfw-policy/azure-firewall-policy.parameters.json
-  var-logging-managementGroupId: Management
+  var-logging-managementGroupId: BCHealth-Sbox-FraserHealth-Platform
   var-logging-subscriptionId: b0069425-e844-43a5-a430-ce4b3e6b5193
   deploymentRegion: canadacentral
   var-FHA-managementGroupId: BCHealth-Sbox-FraserHealth
