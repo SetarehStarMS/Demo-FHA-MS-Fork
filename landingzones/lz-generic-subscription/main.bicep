@@ -88,8 +88,8 @@ param backupRecoveryVault object
 param automation object
 
 // Networking
-@description('Hub Network configuration that includes virtualNetworkId, rfc1918IPRange, rfc6598IPRange and egressVirtualApplianceIp.')
-param hubNetwork object
+// @description('Hub Network configuration that includes virtualNetworkId, rfc1918IPRange, rfc6598IPRange and egressVirtualApplianceIp.')
+// param hubNetwork object
 
 @description('Network configuration for the spoke virtual network.  It includes name, dnsServers, address spaces, vnet peering and subnets.')
 param network object
@@ -183,7 +183,7 @@ module vnet 'networking.bicep' = if (network.deployVnet) {
   name: 'deploy-networking'
   scope: resourceGroup(rgVnet.name)
   params: {
-    hubNetwork: hubNetwork
+    //hubNetwork: hubNetwork
     network: network
     location: location
   }
