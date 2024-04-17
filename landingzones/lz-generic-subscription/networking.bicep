@@ -307,7 +307,7 @@ module vnetPeeringHubToSpoke '../../azresources/network/vnet-peering.bicep' = if
 // Outputs
 output vnetId string = vnet.id
 output vnetName string = vnet.name
-// output vnetPeered bool = network.peerToHubVirtualNetwork
+output vnetPeered bool = network.peerToHubVirtualNetwork
 
 output subnets array = [for subnet in network.subnets: {
   id: '${vnet.id}/subnets/${subnet.name}'
