@@ -1,0 +1,60 @@
+variables:
+  #var-hubnetwork-region: canadacentral
+  #var-hubnetwork-managementGroupId: BCHealth-NorthernHealth-Platform
+  #var-hubnetwork-azfw-configurationFileName: hub-azfw/hub-network.parameters.json
+  #var-hubnetwork-nva-configurationFileName: hub-nva/hub-network.parameters.json
+  #var-hubnetwork-ngfw-configurationFileName: hub-ngfw/hub-network.parameters.json
+  #var-vhubnetwork-nva-configurationFileName: vwan-nva/vwan-nva.parameters.json
+  #var-hubnetwork-subscriptionId: 1b824d8b-d6c3-4625-b7f7-19f5f9cf3f37
+  #var-hubnetwork-azfwPolicy-configurationFileName: hub-azfw-policy/azure-firewall-policy.parameters.json
+  var-logging-managementGroupId: BCHealth-Sbox-FraserHealth-Platform
+  var-logging-subscriptionId: b0069425-e844-43a5-a430-ce4b3e6b5193
+  deploymentRegion: canadacentral
+  var-FHA-managementGroupId: BCHealth-Sbox-FraserHealth
+  #var-BCH-managementGroupId: BCHealth
+  #var-identity-managementGroupId: BCHealth-NorthernHealth-Platform
+  #var-logging-diagnosticSettingsforNetworkSecurityGroupsStoragePrefix: pubsecnsg
+  var-logging-configurationFileName: logging.parameters.json
+  var-managementgroup-hierarchy: |-
+    {
+              "id": "BCHealth-Sbox-FraserHealth",
+              "name": "FraserHealth",
+              "children": [
+                {
+                  "id": "BCHealth-Sbox-FraserHealth-Platform",
+                  "name": "Platform",
+                  "children": []
+                },
+                {
+                  "id": "BCHealth-Sbox-FraserHealth-Application",
+                  "name": "Application",
+                  "children": [
+                    {
+                      "id": "BCHealth-Sbox-FraserHealth-Application-Cloud",
+                      "name": "Cloud",
+                      "children": []
+                    },
+                    {
+                      "id": "BCHealth-Sbox-FraserHealth-Application-Hybrid",
+                      "name": "Hybrid",
+                      "children": []
+                    },
+                  ]
+                },
+                {
+                  "id": "BCHealth-Sbox-FraserHealth-Decommissioned",
+                  "name": "Decommissioned",
+                  "children": []
+                },
+                {
+                  "id": "BCHealth-Sbox-FraserHealth-Sadbox",
+                  "name": "Sandbox",
+                  "children": []
+                }
+              ]
+    }
+  var-logging-region: canadacentral
+  # var-identity-configurationFileName: identity.parameters.json
+  # var-identity-region: canadacentral
+  # var-identity-subscriptionId: f6276be4-3aa6-4b70-a1b0-60656adf4293
+
