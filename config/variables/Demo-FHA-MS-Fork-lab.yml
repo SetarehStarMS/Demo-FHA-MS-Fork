@@ -17,7 +17,7 @@ variables:
   #var-logging-configurationFileName: logging.parameters.json
   var-managementgroup-hierarchy: |-
     {
-      "id": "3c70e550-aa90-4e85-b227-d2fa3efddd7a",
+      "id": "c1af1e68-a1bd-444d-8668-df3c95fb76bb",
       "name": "Tenant Root Group",
       "children": [
         {
