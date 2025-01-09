@@ -445,3 +445,23 @@ if (($null -ne $DeploySubscriptionIds) -and ($DeploySubscriptionIds.Count -gt 0)
     -SubscriptionIds $DeploySubscriptionIds `
     -LogAnalyticsWorkspaceResourceId $LoggingConfiguration.LogAnalyticsWorkspaceResourceId
 }
+
+# Deploy vHub Networking with NVA
+if ($DeployVWANNetworkWithNVA) {
+  Write-Host "Deploying vWAN Networking with NVA..."
+ # Get Logging information using logging config file
+ $LoggingConfiguration = Get-LoggingConfiguration `
+ -ConfigurationFilePath "$($Context.LoggingDirectory)/$($Context.Variables['var-logging-configurationFileName'])" `
+ -SubscriptionId $Context.Variables['var-logging-subscriptionId']
+
+
+  Set-VWANNetwork-With-NVA `
+    -Context $Context `
+    -Region $Context.Variables['var-hubnetwork-region'] `
+    -ManagementGroupId $Context.Variables['var-hubnetwork-managementGroupId'] `
+    -SubscriptionId $Context.Variables['var-hubnetwork-subscriptionId'] `
+    -ConfigurationFilePath "$($Context.NetworkingDirectory)/$($Context.Variables['var-vhubnetwork-nva-configurationFileName'])" `
+    -LogAnalyticsWorkspaceResourceId $LoggingConfiguration.LogAnalyticsWorkspaceResourceId `
+    -NvaUsername $NvaUsername `
+    -NvaPassword $NvaPassword
+}

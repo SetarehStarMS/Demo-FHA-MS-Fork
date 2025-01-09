@@ -8,13 +8,13 @@ variables:
   #var-hubnetwork-subscriptionId: 1b824d8b-d6c3-4625-b7f7-19f5f9cf3f37
   #var-hubnetwork-azfwPolicy-configurationFileName: hub-azfw-policy/azure-firewall-policy.parameters.json
   #var-logging-managementGroupId: Management
-  #var-logging-subscriptionId: b0069425-e844-43a5-a430-ce4b3e6b5193
+  var-logging-subscriptionId: b0069425-e844-43a5-a430-ce4b3e6b5193
   deploymentRegion: canadacentral
   #var-NHA-managementGroupId: BCHealth-NorthernHealth
   var-BCH-managementGroupId: BCHealth
   #var-identity-managementGroupId: BCHealth-NorthernHealth-Platform
   #var-logging-diagnosticSettingsforNetworkSecurityGroupsStoragePrefix: pubsecnsg
-  #var-logging-configurationFileName: logging.parameters.json
+  var-logging-configurationFileName: logging.parameters.json
   var-managementgroup-hierarchy: |-
     {
       "id": "c1af1e68-a1bd-444d-8668-df3c95fb76bb",
@@ -257,228 +257,228 @@ variables:
               "name": "Sbox",
               "children": [
                  {
-                  "id": "BCHealth-Platform",
+                  "id": "BCHealth-Sbox-Platform",
                   "name": "Platform",
                   "children": [
                     {
-                      "id": "BCHealth-Platform-Management",
+                      "id": "BCHealth-Sbox-Platform-Management",
                       "name": "Management",
                       "children": []
                     },
                     {
-                      "id": "BCHealth-Platform-Connectivity",
+                      "id": "BCHealth-Sbox-Platform-Connectivity",
                       "name": "Connectivity",
                       "children": []
                     },
                     {
-                      "id": "BCHealth-Platform-Identity",
+                      "id": "BCHealth-Sbox-Platform-Identity",
                       "name": "Identity",
                       "children": []
                     },
                     {
-                      "id": "BCHealth-Platform-SharedServices",
+                      "id": "BCHealth-Sbox-Platform-SharedServices",
                       "name": "SharedServices",
                       "children": []
                     },
                     {
-                      "id": "BCHealth-Platform-Security",
+                      "id": "BCHealth-Sbox-Platform-Security",
                       "name": "Security",
                       "children": []
                     }
                   ]
                 },
                 {
-                  "id": "BCHealth-NewSubscription",
+                  "id": "BCHealth-Sbox-NewSubscription",
                   "name": "NewSubscription",
                   "children": []
                 },
                 {
-                  "id": "BCHealth-FraserHealth",
+                  "id": "BCHealth-Sbox-FraserHealth",
                   "name": "FraserHealth",
                   "children": [
                     {
-                      "id": "BCHealth-FraserHealth-Platform",
+                      "id": "BCHealth-Sbox-FraserHealth-Platform",
                       "name": "Platform",
                       "children": []
                     },
                     {
-                      "id": "BCHealth-FraserHealth-Application",
+                      "id": "BCHealth-Sbox-FraserHealth-Application",
                       "name": "Application",
                       "children": [
                         {
-                          "id": "BCHealth-FraserHealth-Application-Cloud",
+                          "id": "BCHealth-Sbox-FraserHealth-Application-Cloud",
                           "name": "Cloud",
                           "children": []
                         },
                         {
-                          "id": "BCHealth-FraserHealth-Application-Hybrid",
+                          "id": "BCHealth-Sbox-FraserHealth-Application-Hybrid",
                           "name": "Hybrid",
                           "children": []
                         },
                       ]
                     },
                     {
-                      "id": "BCHealth-FraserHealth-Decommissioned",
+                      "id": "BCHealth-Sbox-FraserHealth-Decommissioned",
                       "name": "Decommissioned",
                       "children": []
                     }
                   ]
                 },
                 {
-                  "id": "BCHealth-InteriorHealth",
+                  "id": "BCHealth-Sbox-InteriorHealth",
                   "name": "InteriorHealth",
                   "children": [
                     {
-                      "id": "BCHealth-InteriorHealth-Platform",
+                      "id": "BCHealth-Sbox-InteriorHealth-Platform",
                       "name": "Platform",
                       "children": []
                     },
                     {
-                      "id": "BCHealth-InteriorHealth-Application",
+                      "id": "BCHealth-Sbox-InteriorHealth-Application",
                       "name": "Application",
                       "children": [
                         {
-                          "id": "BCHealth-InteriorHealth-Application-Cloud",
+                          "id": "BCHealth-Sbox-InteriorHealth-Application-Cloud",
                           "name": "Cloud",
                           "children": []
                         },
                         {
-                          "id": "BCHealth-InteriorHealth-Application-Hybrid",
+                          "id": "BCHealth-Sbox-InteriorHealth-Application-Hybrid",
                           "name": "Hybrid",
                           "children": []
                         },
                       ]
                     },
                     {
-                      "id": "BCHealth-InteriorHealth-Decommissioned",
+                      "id": "BCHealth-Sbox-InteriorHealth-Decommissioned",
                       "name": "Decommissioned",
                       "children": []
                     }
                   ]
                 },
                 {
-                  "id": "BCHealth-IslandHealth",
+                  "id": "BCHealth-Sbox-IslandHealth",
                   "name": "IslandHealth",
                   "children": [
                     {
-                      "id": "BCHealth-IslandHealth-Platform",
+                      "id": "BCHealth-Sbox-IslandHealth-Platform",
                       "name": "Platform",
                       "children": []
                     },
                     {
-                      "id": "BCHealth-IslandHealth-Application",
+                      "id": "BCHealth-Sbox-IslandHealth-Application",
                       "name": "Application",
                       "children": [
                         {
-                          "id": "BCHealth-IslandHealth-Application-Cloud",
+                          "id": "BCHealth-Sbox-IslandHealth-Application-Cloud",
                           "name": "Cloud",
                           "children": []
                         },
                         {
-                          "id": "BCHealth-IslandHealth-Application-Hybrid",
+                          "id": "BCHealth-Sbox-IslandHealth-Application-Hybrid",
                           "name": "Hybrid",
                           "children": []
                         },
                       ]
                     },
                     {
-                      "id": "BCHealth-IslandHealth-Decommissioned",
+                      "id": "BCHealth-Sbox-IslandHealth-Decommissioned",
                       "name": "Decommissioned",
                       "children": []
                     }
                   ]
                 },
                 {
-                  "id": "BCHealth-MinistryOfHealth",
+                  "id": "BCHealth-Sbox-MinistryOfHealth",
                   "name": "MinistryOfHealth",
                   "children": [
                     {
-                      "id": "BCHealth-MinistryOfHealth-Platform",
+                      "id": "BCHealth-Sbox-MinistryOfHealth-Platform",
                       "name": "Platform",
                       "children": []
                     },
                     {
-                      "id": "BCHealth-MinistryOfHealth-Application",
+                      "id": "BCHealth-Sbox-MinistryOfHealth-Application",
                       "name": "Application",
                       "children": [
                         {
-                          "id": "BCHealth-MinistryOfHealth-Application-Cloud",
+                          "id": "BCHealth-Sbox-MinistryOfHealth-Application-Cloud",
                           "name": "Cloud",
                           "children": []
                         },
                         {
-                          "id": "BCHealth-MinistryOfHealth-Application-Hybrid",
+                          "id": "BCHealth-Sbox-MinistryOfHealth-Application-Hybrid",
                           "name": "Hybrid",
                           "children": []
                         },
                       ]
                     },
                     {
-                      "id": "BCHealth-MinistryOfHealth-Decommissioned",
+                      "id": "BCHealth-Sbox-MinistryOfHealth-Decommissioned",
                       "name": "Decommissioned",
                       "children": []
                     }
                   ]
                 },
                 {
-                  "id": "BCHealth-NorthernHealth",
+                  "id": "BCHealth-Sbox-NorthernHealth",
                   "name": "NorthernHealth",
                   "children": [
                     {
-                      "id": "BCHealth-NorthernHealth-Platform",
+                      "id": "BCHealth-Sbox-NorthernHealth-Platform",
                       "name": "Platform",
                       "children": []
                     },
                     {
-                      "id": "BCHealth-NorthernHealth-Application",
+                      "id": "BCHealth-Sbox-NorthernHealth-Application",
                       "name": "Application",
                       "children": [
                         {
-                          "id": "BCHealth-NorthernHealth-Application-Cloud",
+                          "id": "BCHealth-Sbox-NorthernHealth-Application-Cloud",
                           "name": "Cloud",
                           "children": []
                         },
                         {
-                          "id": "BCHealth-NorthernHealth-Application-Hybrid",
+                          "id": "BCHealth-Sbox-NorthernHealth-Application-Hybrid",
                           "name": "Hybrid",
                           "children": []
                         },
                       ]
                     },
                     {
-                      "id": "BCHealth-NorthernHealth-Decommissioned",
+                      "id": "BCHealth-Sbox-NorthernHealth-Decommissioned",
                       "name": "Decommissioned",
                       "children": []
                     }
                   ]
                 },
                 {
-                  "id": "BCHealth-ProvincialHealth",
+                  "id": "BCHealth-Sbox-ProvincialHealth",
                   "name": "ProvincialHealth",
                   "children": [
                     {
-                      "id": "BCHealth-ProvincialHealth-Platform",
+                      "id": "BCHealth-Sbox-ProvincialHealth-Platform",
                       "name": "Platform",
                       "children": []
                     },
                     {
-                      "id": "BCHealth-ProvincialHealth-Application",
+                      "id": "BCHealth-Sbox-ProvincialHealth-Application",
                       "name": "Application",
                       "children": [
                         {
-                          "id": "BCHealth-ProvincialHealth-Application-Cloud",
+                          "id": "BCHealth-Sbox-ProvincialHealth-Application-Cloud",
                           "name": "Cloud",
                           "children": []
                         },
                         {
-                          "id": "BCHealth-ProvincialHealth-Application-Hybrid",
+                          "id": "BCHealth-Sbox-ProvincialHealth-Application-Hybrid",
                           "name": "Hybrid",
                           "children": []
                         },
                       ]
                     },
                     {
-                      "id": "BCHealth-ProvincialHealth-Decommissioned",
+                      "id": "BCHealth-Sbox-ProvincialHealth-Decommissioned",
                       "name": "Decommissioned",
                       "children": []
                     }
