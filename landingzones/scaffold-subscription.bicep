@@ -35,8 +35,8 @@ param location string = deployment().location
 param serviceHealthAlerts object = {}
 
 // Log Analytics
-// @description('Log Analytics Resource Id to integrate Microsoft Defender for Cloud.')
-// param logAnalyticsWorkspaceResourceId string
+@description('Log Analytics Resource Id to integrate Microsoft Defender for Cloud.')
+param logAnalyticsWorkspaceResourceId string
 
 // Microsoft Defender for Cloud
 // Example (JSON)
@@ -54,8 +54,8 @@ param serviceHealthAlerts object = {}
 //   'email': 'alzcanadapubsec@microsoft.com'
 //   'phone': '6045555555'
 // }
-// @description('Microsoft Defender for Cloud configuration.  It includes email and phone.')
-// param securityCenter object
+@description('Microsoft Defender for Cloud configuration.  It includes email and phone.')
+param securityCenter object
 
 // Subscription Role Assignments
 // Example (JSON)
@@ -164,15 +164,15 @@ resource setTagISSO 'Microsoft.Resources/tags@2020-10-01' = {
 }
 
 // Configure Microsoft Defender for Cloud
-// module asc '../azresources/security-center/asc.bicep' = {
-//   name: 'configure-security-center-${uniqueString(location)}'
-//   scope: subscription()
-//   params: {
-//     logAnalyticsWorkspaceResourceId: logAnalyticsWorkspaceResourceId
-//     securityContactEmail: securityCenter.email
-//     securityContactPhone: securityCenter.phone
-//   }
-// }
+module asc '../azresources/security-center/asc.bicep' = {
+  name: 'configure-security-center-${uniqueString(location)}'
+  scope: subscription()
+  params: {
+    logAnalyticsWorkspaceResourceId: logAnalyticsWorkspaceResourceId
+    securityContactEmail: securityCenter.email
+    securityContactPhone: securityCenter.phone
+  }
+}
 
 // Configure Budget
 module budget '../azresources/cost/budget-subscription.bicep' = if (!empty(subscriptionBudget) && subscriptionBudget.createBudget) {
