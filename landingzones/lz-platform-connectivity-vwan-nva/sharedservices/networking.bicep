@@ -36,13 +36,13 @@ module nsgempty '../../../azresources/network/nsg/nsg-empty.bicep' = {
   }
 }
 
-module nsgpanorama 'nsg-panorama.bicep' = {
-  name: 'deploy-nsg-PanoramaNsg'
-  params: {
-    name: 'Panorama-Nsg'
-    location: location
-  }
-}
+// module nsgpanorama 'nsg-panorama.bicep' = {
+//   name: 'deploy-nsg-PanoramaNsg'
+//   params: {
+//     name: 'Panorama-Nsg'
+//     location: location
+//   }
+// }
 
 var requiredSubnets = [
   // {
@@ -63,16 +63,16 @@ var requiredSubnets = [
       }
     }
   }
-  {
-    name: SharedConnServicesNetwork.subnets.PanoramaSubnet.name
-    properties: {
-      addressPrefix: SharedConnServicesNetwork.subnets.PanoramaSubnet.addressPrefix
-      privateLinkServiceNetworkPolicies: 'Disabled'
-      networkSecurityGroup: {
-        id: nsgpanorama.outputs.nsgId
-      }
-    }
-  }
+  // {
+  //   name: SharedConnServicesNetwork.subnets.PanoramaSubnet.name
+  //   properties: {
+  //     addressPrefix: SharedConnServicesNetwork.subnets.PanoramaSubnet.addressPrefix
+  //     privateLinkServiceNetworkPolicies: 'Disabled'
+  //     networkSecurityGroup: {
+  //       id: nsgpanorama.outputs.nsgId
+  //     }
+  //   }
+  // }
 ]
 
 var optionalSubnets = [for (subnet, i) in SharedConnServicesNetwork.subnets.optional: {
@@ -114,4 +114,4 @@ output vnetId string = SharedConnServicesVNET.id
 
 // output AzureBastionSubnetId string = '${SharedConnServicesVNET.id}/subnets/${SharedConnServicesNetwork.subnets.AzureBastionSubnet.name}'
 output ManagementSubnetId string = '${SharedConnServicesVNET.id}/subnets/${SharedConnServicesNetwork.subnets.ManagementSubnet.name}'
-output PanoramaSubnetId string = '${SharedConnServicesVNET.id}/subnets/${SharedConnServicesNetwork.subnets.PanoramaSubnet.name}'
+//output PanoramaSubnetId string = '${SharedConnServicesVNET.id}/subnets/${SharedConnServicesNetwork.subnets.PanoramaSubnet.name}'
