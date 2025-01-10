@@ -40,12 +40,6 @@
         "alertRuleDescription": "Logging Alerts for Incidents and Security"
       }
     },
-    "securityCenter": {
-      "value": {
-        "email": "security@example.com",
-        "phone": "6135555555"
-      }
-    },
     "subscriptionRoleAssignments": {
       "value": [
         {
