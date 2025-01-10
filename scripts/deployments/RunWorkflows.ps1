@@ -175,6 +175,7 @@ Param(
   [switch]$DeployAzureFirewallPolicy,
   [switch]$DeployHubNetworkWithNVA,
   [switch]$DeployHubNetworkWithAzureFirewall,
+  [switch]$DeployVWANNetworkWithNVA,
 
   [switch]$DeployIdentity,
 
@@ -237,6 +238,7 @@ Write-Host "Loading functions..."
 . ".\Functions\Policy.ps1"
 . ".\Functions\HubNetworkWithNVA.ps1"
 . ".\Functions\HubNetworkWithAzureFirewall.ps1"
+. ".\Functions\HubWVANNetworkWithNVA.ps1"
 . ".\Functions\Identity.ps1"
 . ".\Functions\Subscriptions.ps1"
 
