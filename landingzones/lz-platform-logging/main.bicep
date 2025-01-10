@@ -76,8 +76,8 @@ param serviceHealthAlerts object = {}
 //   email: 'alzcanadapubsec@microsoft.com'
 //   phone: '6045555555'
 // }
-@description('Microsoft Defender for Cloud.  It includes email and phone.')
-param securityCenter object
+// @description('Microsoft Defender for Cloud.  It includes email and phone.')
+// param securityCenter object
 
 // Subscription Role Assignments
 // Example (JSON)
@@ -267,7 +267,7 @@ module subScaffold '../scaffold-subscription.bicep' = {
     subscriptionTags: subscriptionTags
     resourceTags: resourceTags
 
-    logAnalyticsWorkspaceResourceId: logAnalytics.outputs.workspaceResourceId
-    securityCenter: securityCenter
+    // logAnalyticsWorkspaceResourceId: logAnalytics.outputs.workspaceResourceId
+    // securityCenter: securityCenter
   }
 }

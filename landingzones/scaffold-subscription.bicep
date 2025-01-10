@@ -35,8 +35,8 @@ param location string = deployment().location
 param serviceHealthAlerts object = {}
 
 // Log Analytics
-@description('Log Analytics Resource Id to integrate Microsoft Defender for Cloud.')
-param logAnalyticsWorkspaceResourceId string
+// @description('Log Analytics Resource Id to integrate Microsoft Defender for Cloud.')
+// param logAnalyticsWorkspaceResourceId string
 
 // Microsoft Defender for Cloud
 // Example (JSON)
@@ -54,8 +54,8 @@ param logAnalyticsWorkspaceResourceId string
 //   'email': 'alzcanadapubsec@microsoft.com'
 //   'phone': '6045555555'
 // }
-@description('Microsoft Defender for Cloud configuration.  It includes email and phone.')
-param securityCenter object
+// @description('Microsoft Defender for Cloud configuration.  It includes email and phone.')
+// param securityCenter object
 
 // Subscription Role Assignments
 // Example (JSON)
