@@ -1,11 +1,11 @@
 variables:
-  #var-hubnetwork-region: canadacentral
-  #var-hubnetwork-managementGroupId: BCHealth-NorthernHealth-Platform
+  var-vhubnetwork-region: canadacentral
+  var-vhubnetwork-managementGroupId: BCHealth-Sbox-FraserHealth-Platform
   #var-hubnetwork-azfw-configurationFileName: hub-azfw/hub-network.parameters.json
   #var-hubnetwork-nva-configurationFileName: hub-nva/hub-network.parameters.json
   #var-hubnetwork-ngfw-configurationFileName: hub-ngfw/hub-network.parameters.json
-  #var-vhubnetwork-nva-configurationFileName: vwan-nva/vwan-nva.parameters.json
-  #var-hubnetwork-subscriptionId: 1b824d8b-d6c3-4625-b7f7-19f5f9cf3f37
+  var-vhubnetwork-nva-configurationFileName: vwan-nva/vwan-nva.parameters.json
+  var-vhubnetwork-subscriptionId: 1d5b5f8a-d3d1-4a17-b061-00bf1db56490
   #var-hubnetwork-azfwPolicy-configurationFileName: hub-azfw-policy/azure-firewall-policy.parameters.json
   var-logging-managementGroupId: BCHealth-Sbox-FraserHealth-Platform
   var-logging-subscriptionId: 79c549f2-2c83-42b4-981e-ac008c1810e9

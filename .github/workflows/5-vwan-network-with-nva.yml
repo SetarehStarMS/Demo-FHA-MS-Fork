@@ -44,5 +44,5 @@ jobs:
           -LoginServicePrincipalJson (ConvertTo-SecureString -String '${{secrets.ALZ_SPN_CREDENTIALS}}' -AsPlainText -Force) `
           -GitHubRepo ${env:GITHUB_REPOSITORY} `
           -GitHubRef ${env:GITHUB_REF} `
-          -NvaUsername (ConvertTo-SecureString -String '${{secrets.Fortinet_USERNAME}}' -AsPlainText -Force) `
-          -NvaPassword (ConvertTo-SecureString -String '${{secrets.Fortinet_PASSWORD}} '-AsPlainText -Force)
+          -NvaUsername (ConvertTo-SecureString -String '${{secrets.FORTINET_USERNAME}}' -AsPlainText -Force) `
+          -NvaPassword (ConvertTo-SecureString -String '${{secrets.FORTINET_PASSWORD}} '-AsPlainText -Force)
