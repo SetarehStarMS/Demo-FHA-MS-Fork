@@ -164,15 +164,15 @@ resource setTagISSO 'Microsoft.Resources/tags@2020-10-01' = {
 }
 
 // Configure Microsoft Defender for Cloud
-module asc '../azresources/security-center/asc.bicep' = {
-  name: 'configure-security-center-${uniqueString(location)}'
-  scope: subscription()
-  params: {
-    logAnalyticsWorkspaceResourceId: logAnalyticsWorkspaceResourceId
-    securityContactEmail: securityCenter.email
-    securityContactPhone: securityCenter.phone
-  }
-}
+// module asc '../azresources/security-center/asc.bicep' = {
+//   name: 'configure-security-center-${uniqueString(location)}'
+//   scope: subscription()
+//   params: {
+//     logAnalyticsWorkspaceResourceId: logAnalyticsWorkspaceResourceId
+//     securityContactEmail: securityCenter.email
+//     securityContactPhone: securityCenter.phone
+//   }
+// }
 
 // Configure Budget
 module budget '../azresources/cost/budget-subscription.bicep' = if (!empty(subscriptionBudget) && subscriptionBudget.createBudget) {
