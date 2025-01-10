@@ -38,26 +38,26 @@ resource ascWorkspaceSettings 'Microsoft.Security/workspaceSettings@2017-08-01-p
   }
 }
 
-resource ascAutoProvision 'Microsoft.Security/autoProvisioningSettings@2017-08-01-preview' = {
-  name: 'default'
-  properties: {
-    autoProvision: 'On'
-  }
-}
+// resource ascAutoProvision 'Microsoft.Security/autoProvisioningSettings@2017-08-01-preview' = {
+//   name: 'default'
+//   properties: {
+//     autoProvision: 'On'
+//   }
+// }
 
 // Enable Azure Defender
 var azureDefenderServices = [
-  'Arm'
-  'AppServices'
-  'Containers'
-  'CosmosDbs'
-  'Dns'
-  'KeyVaults'
-  'OpenSourceRelationalDatabases'
-  'SqlServers'
-  'SqlServerVirtualMachines'
-  'StorageAccounts'
-  'VirtualMachines'
+  // 'Arm'
+  // 'AppServices'
+  // 'Containers'
+  // 'CosmosDbs'
+  // 'Dns'
+  // 'KeyVaults'
+  // 'OpenSourceRelationalDatabases'
+  // 'SqlServers'
+  // 'SqlServerVirtualMachines'
+  // 'StorageAccounts'
+  // 'VirtualMachines'
 ]
 
 @batchSize(1)

@@ -1,0 +1,242 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "serviceHealthAlerts": {
+      "value": {
+        "alertRuleName": "Lab VWAN Alerts",
+        "receivers": {
+          "app": [],
+          "sms": [],
+          "email": [
+            "VWAN@example.com"
+          ],
+          "voice": []
+        },
+        "regions": [
+          "Global",
+          "Canada Central",
+          "Canada East"
+        ],
+        "resourceGroupName": "alz-lab-connectivity-alerts-rg",
+        "actionGroupName": "Connectivity Alerts",
+        "actionGroupShortName": "vwan-ag",
+        "incidentTypes": [
+          "Incident",
+          "Security"
+        ],
+        "alertRuleDescription": "Connectivity Alerts for Incidents and Security"
+      }
+    },
+    "securityCenter": {
+      "value": {
+        "email": "security@example.com",
+        "phone": "6135555555"
+      }
+    },
+    "subscriptionRoleAssignments": {
+      "value": []
+    },
+    "subscriptionBudget": {
+      "value": {
+        "createBudget": false
+      }
+    },
+    "subscriptionTags": {
+      "value": {
+        "Env": "Lab",
+        "Support": "Lab",
+        "App-id": "3f34-d34d3"
+      }
+    },
+    "resourceTags": {
+      "value": {
+        "Support" : "sronassi@microsoft.com",
+        "app-id" : "",
+        "CostCenter": "23445",
+        "env": "lab",
+        "HealthOrganization": "demo",
+        "Data Classification": "infa",
+        "DataSensitivity": "s1",
+        "ProjectName": "test",
+        "TechnicalContact": "me",
+        "ProjectContact": "me",
+        "ClientOrganization": "nha"
+      }
+    },
+    "VWAN": {
+      "value": {
+        "resourceGroupName" : "alz-lab-vwan-networking-rg",
+        "name" : "VWAN-CC-Lab"
+      }
+    },
+    "VirtualWanHUBs":{
+      "value": [ 
+        {
+        "DeployVWANHUB": true,
+        "VirtualWanHUBName": "vHUB-CC-Lab",
+        "VirtualHubAddressPrefix": "10.100.0.0/23",
+        "HubLocation": "canadacentral",
+        "VirtualRouterAutoScaleConfiguration": 2,
+        "HubRoutingPreference": "ExpressRoute",
+        "ExpressRouteConfig": {
+          "ExpressRouteGatewayEnabled": false,
+          "ExpressRouteGatewayScaleUnits": 1
+        },
+        "VPNConfig": {
+          "VPNGatewayEnabled": false,
+          "VPNGatewayScaleUnits": 1,
+          "VPNSiteName": "site1",
+          "VPNDeviceVendors": "Juniper",
+          "VPNDeviceModel": "SRX-345",
+          "linkSpeedInMbps": 500,
+          "addressPrefixes": "192.168.0.0/24",
+          "vpnsitelinkName": "site1Link",
+          "linkIPAddress": "192.168.0.4",
+          "linkProviderName": "Juniper", 
+          "vpnConnectionName": "site1Connection",
+          "sharedKey": "dfgtewjjfsd",
+          "enableBgp": false
+        },
+        "VirtualHubRoutingIntentDestinations": []
+      },
+        {
+        "DeployVWANHUB": false,
+        "VirtualWanHUBName": "vHUB-CE-Lab",
+        "VirtualHubAddressPrefix": "10.200.0.0/23",
+        "HubLocation": "canadaeast",
+        "VirtualRouterAutoScaleConfiguration": 2,
+        "HubRoutingPreference": "ExpressRoute",
+        "ExpressRouteConfig": {
+          "ExpressRouteGatewayEnabled": false,
+          "ExpressRouteGatewayScaleUnits": 1
+        },
+        "VPNConfig": {
+          "VPNGatewayEnabled": false,
+          "VPNGatewayScaleUnits": 1,
+          "VPNSiteName": "site1",
+          "VPNDeviceVendors": "Juniper",
+          "VPNDeviceModel": "SRX-345",
+          "linkSpeedInMbps": 500,
+          "addressPrefixes": "192.168.0.0/24",
+          "vpnsitelinkName": "site1Link",
+          "linkIPAddress": "192.168.0.4",
+          "linkProviderName": "Juniper", 
+          "vpnConnectionName": "site1Connection",
+          "sharedKey": "dfgtewjjfsd",
+          "enableBgp": false
+        },
+        "VirtualHubRoutingIntentDestinations": []
+      }
+    ]
+    },
+    "FirewallPublicIPsConfig": {
+      "value": {
+        "DeployPublicIPs": true,
+        "ResourceGroupName": "alz-lab-cc-sharedcon-ngfw-rg",
+        "PublicIPNames": [
+          "NGFW-SNAT-PIP",
+          "NGFW-DNAT-App1-PIP"
+        ]
+      }
+    },
+    "SharedConnServicesPrimaryRegionConfig": {
+      "value": {
+        "DeploymentRegion": "canadacentral",
+        "ResourceGroupName": "alz-lab-cc-sharedcon-networking-rg",
+        "NetworkConfig": {
+          "name": "SharedConVNET",
+          "addressPrefixes": [
+            "10.250.0.0/24"
+          ],
+          "dnsServers": [],
+          "subnets": {
+            "ManagementSubnet": {
+              "comments": "ManagementSubnet (Jumpboxes)",
+              "name": "ManagementSubnet",
+              "addressPrefix": "10.250.0.64/27"
+            },            
+            "optional": []
+          }
+        },
+        "BastionNetworkConfig": {
+          "name": "SharedConBastionVNET",
+          "addressPrefixes": [
+            "10.251.0.0/24"
+          ],
+          "dnsServers": [],
+          "subnets": {
+            "AzureBastionSubnet": {
+              "comments": "AzureBastionSubnet",
+              "name": "AzureBastionSubnet",
+              "addressPrefix": "10.251.0.0/26"
+            }
+          }
+        },
+        "BastionConfig": {
+          "enabled": true,
+          "ResourceGroupName": "alz-lab-cc-sharedcon-bastion-rg",
+          "name": "bastion-shared-cc",
+          "sku": "Standard",
+          "scaleUnits": 2
+        },
+        "JumpboxConfig": {
+          "enabled": true,
+          "ResourceGroupName": "alz-lab-cc-sharedcon-jumpbox-rg",
+          "name": "JumpboxVM-CC-01",
+          "VMSize": "Standard_D2s_v3"
+        }
+       
+      }
+    },
+    "SharedConnServicesSecondaryRegionConfig": {
+      "value": {
+        "DeploySharedConnServicesSecondaryRegion": false,
+        "DeploymentRegion": "canadaeast",
+        "ResourceGroupName": "alz-lab-ce-sharedcon-networking-rg",
+        "NetworkConfig": {
+          "name": "SharedCon-CE-VNET",
+          "addressPrefixes": [
+            "10.99.0.0/24"
+          ],
+          "dnsServers": [],
+          "subnets": {
+            "ManagementSubnet": {
+              "comments": "ManagementSubnet (Jumpboxes)",
+              "name": "ManagementSubnet",
+              "addressPrefix": "10.99.0.64/27"
+            },            
+            "optional": []
+          }
+        },
+        "BastionNetworkConfig": {
+          "name": "SharedCon-CE-BastionVNET",
+          "addressPrefixes": [
+            "10.100.0.0/24"
+          ],
+          "dnsServers": [],
+          "subnets": {
+            "AzureBastionSubnet": {
+              "comments": "AzureBastionSubnet",
+              "name": "AzureBastionSubnet",
+              "addressPrefix": "10.100.0.0/26"
+            }
+          }
+        },
+        "BastionConfig": {
+          "enabled": false,
+          "ResourceGroupName": "alz-lab-ce-sharedcon-bastion-rg",
+          "name": "bastion-shared-ce",
+          "sku": "Standard",
+          "scaleUnits": 2
+        },
+        "JumpboxConfig": {
+          "enabled": false,
+          "ResourceGroupName": "alz-lab-ce-sharedcon-jumpbox-rg",
+          "name": "JumpboxVM-CE-01",
+          "VMSize": "Standard_D2s_v3"
+        }        
+      }
+    }
+  }
+}

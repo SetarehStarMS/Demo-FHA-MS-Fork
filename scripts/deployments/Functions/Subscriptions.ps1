@@ -28,7 +28,7 @@ function Set-Subscriptions {
     # Find the ARM JSON parameters, ensure there's only 1 parameters file for each subscription
     # $SubscriptionConfigurations = Get-ChildItem -Path $Context.SubscriptionsDirectory -Filter "*$subscriptionId*.json" -Recurse
     $pattern = "^$subscriptionId.*(_.*)(_.*)?\.json"
-    $SubscriptionConfigurations = @(Get-ChildItem -Path $Context.SubscriptionsDirectory -Filter "*$subscriptionId*.json" -File -Recurse | ? { $_.Name -match $pattern })
+    $SubscriptionConfigurations = @(Get-ChildItem -Path $Context.SubscriptionsDirectory -Filter "*$subscriptionId*.json" -File -Recurse | ? { $_.Name -match $pattern })    
 
     if ($SubscriptionConfigurations.Count -eq 0) {
       Write-Output "No Subscription JSON parameters files found in $($Context.SubscriptionsDirectory) for $subscriptionId"
@@ -89,18 +89,18 @@ function Set-Subscriptions {
     $MoveDeploymentName="move-subscription-$SubscriptionId-$DeploymentRegion"
     $MoveDeploymentName=-join $MoveDeploymentName[0..63] 
 
-    Write-Output "Moving Subscription ($SubscriptionId) to Management Group ($ManagementGroupId)"
-    $TemplateFile = (Resolve-Path -Path "$($Context.WorkingDirectory)/landingzones/utils/mg-move/move-subscription.bicep").Path
-    New-AzManagementGroupDeployment `
-      -Name $MoveDeploymentName `
-      -ManagementGroupId $ManagementGroupId `
-      -Location $Context.DeploymentRegion `
-      -TemplateFile $TemplateFile `
-      -TemplateParameterObject @{
-        managementGroupId = $ManagementGroupId
-        subscriptionId = $SubscriptionId
-      } `
-      -Verbose
+    # Write-Output "Moving Subscription ($SubscriptionId) to Management Group ($ManagementGroupId)"
+    # $TemplateFile = (Resolve-Path -Path "$($Context.WorkingDirectory)/landingzones/utils/mg-move/move-subscription.bicep").Path
+    # New-AzManagementGroupDeployment `
+    #   -Name $MoveDeploymentName `
+    #   -ManagementGroupId $ManagementGroupId `
+    #   -Location $Context.DeploymentRegion `
+    #   -TemplateFile $TemplateFile `
+    #   -TemplateParameterObject @{
+    #     managementGroupId = $ManagementGroupId
+    #     subscriptionId = $SubscriptionId
+    #   } `
+    #   -Verbose
 
     Write-Output "Deploying $PopulatedParametersFilePath to $SubscriptionId in $Region"
 

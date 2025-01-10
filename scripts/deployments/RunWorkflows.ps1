@@ -358,25 +358,6 @@ if ($DeployBuiltinPolicySetAssignments) {
     -LogAnalyticsWorkspaceRetentionInDays $LoggingConfiguration.LogRetentionInDays
 }
 
-# Deploy Hub Networking with NVA
-if ($DeployHubNetworkWithNVA) {
-  Write-Host "Deploying Hub Networking with NVA..."
-  # Get Logging information using logging config file
-  $LoggingConfiguration = Get-LoggingConfiguration `
-    -ConfigurationFilePath "$($Context.LoggingDirectory)/$($Context.Variables['var-logging-configurationFileName'])" `
-    -SubscriptionId $Context.Variables['var-logging-subscriptionId']
-
-  Set-HubNetwork-With-NVA `
-    -Context $Context `
-    -Region $Context.Variables['var-hubnetwork-region'] `
-    -ManagementGroupId $Context.Variables['var-hubnetwork-managementGroupId'] `
-    -SubscriptionId $Context.Variables['var-hubnetwork-subscriptionId'] `
-    -ConfigurationFilePath "$($Context.NetworkingDirectory)/$($Context.Variables['var-hubnetwork-nva-configurationFileName'])" `
-    -LogAnalyticsWorkspaceResourceId $LoggingConfiguration.LogAnalyticsWorkspaceResourceId `
-    -NvaUsername $NvaUsername `
-    -NvaPassword $NvaPassword
-}
-
 # Azure Firewall Policy
 if ($DeployAzureFirewallPolicy) {
   # Create Azure Firewall Policy
@@ -444,4 +425,24 @@ if (($null -ne $DeploySubscriptionIds) -and ($DeploySubscriptionIds.Count -gt 0)
     -Region $Context.DeploymentRegion `
     -SubscriptionIds $DeploySubscriptionIds `
     -LogAnalyticsWorkspaceResourceId $LoggingConfiguration.LogAnalyticsWorkspaceResourceId
+}
+
+# Deploy vHub Networking with NVA
+if ($DeployVWANNetworkWithNVA) {
+  Write-Host "Deploying vWAN Networking with NVA..."
+ # Get Logging information using logging config file
+ $LoggingConfiguration = Get-LoggingConfiguration `
+ -ConfigurationFilePath "$($Context.LoggingDirectory)/$($Context.Variables['var-logging-configurationFileName'])" `
+ -SubscriptionId $Context.Variables['var-logging-subscriptionId']
+
+
+  Set-VWANNetwork-With-NVA `
+    -Context $Context `
+    -Region $Context.Variables['var-vhubnetwork-region'] `
+    -ManagementGroupId $Context.Variables['var-vhubnetwork-managementGroupId'] `
+    -SubscriptionId $Context.Variables['var-vhubnetwork-subscriptionId'] `
+    -ConfigurationFilePath "$($Context.NetworkingDirectory)/$($Context.Variables['var-vhubnetwork-nva-configurationFileName'])" `
+    -LogAnalyticsWorkspaceResourceId $LoggingConfiguration.LogAnalyticsWorkspaceResourceId `
+    -NvaUsername $NvaUsername `
+    -NvaPassword $NvaPassword
 }

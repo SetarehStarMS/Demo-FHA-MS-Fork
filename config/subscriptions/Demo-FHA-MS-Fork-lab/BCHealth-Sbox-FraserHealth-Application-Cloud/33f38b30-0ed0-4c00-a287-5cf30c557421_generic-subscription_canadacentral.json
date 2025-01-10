@@ -1,0 +1,197 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Azure/CanadaPubSecALZ/main/schemas/latest/landingzones/lz-generic-subscription.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "canadacentral"
+    },
+    "serviceHealthAlerts": {
+      "value": {
+        "alertRuleName": "demo Subscription Owners Alerts",
+        "receivers": {
+          "app": [
+            "subscription-owners@example.com"
+          ],
+          "sms": [
+            {
+              "countryCode": "1",
+              "phoneNumber": "6135555555"
+            }
+          ],
+          "email": [
+            "subscription-owners@example.com"
+          ],
+          "voice": [
+            {
+              "countryCode": "1",
+              "phoneNumber": "6135555555"
+            }
+          ]
+        },
+        "regions": [
+          "Global",
+          "Canada Central",
+          "Canada East"
+        ],
+        "resourceGroupName": "demo-service-health-alerts-rg",
+        "actionGroupName": "demo Subscription Owners Alerts",
+        "actionGroupShortName": "sub-own-ag",
+        "incidentTypes": [
+          "Incident",
+          "Security"
+        ],
+        "alertRuleDescription": "Subscription Owners Alerts for Incidents and Security"
+      }
+    },
+    "securityCenter": {
+      "value": {
+        "email": "security@example.com",
+        "phone": "6135555555"
+      }
+    },
+    "subscriptionRoleAssignments": {
+      "value": [
+        {
+          "comments": "Built-in Contributor Role",
+          "securityGroupObjectIds": [
+            
+          ],
+          "roleDefinitionId": "b24988ac-6180-42a0-ab88-20f7382dd24c"
+        },
+        {
+          "comments": "Custom Role: Landing Zone Application Owner",
+          "securityGroupObjectIds": [
+            
+          ],
+          "roleDefinitionId": "b4c87314-c1a1-5320-9c43-779585186bcc"
+        }
+      ]
+    },
+    "subscriptionBudget": {
+      "value": {
+        "createBudget": false
+      }
+    },
+    "subscriptionTags": {
+      "value": {
+        
+      }
+    },
+    "resourceTags": {
+      "value": {
+        "Support" : "sronassi@microsoft.com",
+        "app-id" : "",
+        "CostCenter": "23445",
+        "env": "lab",
+        "HealthOrganization": "fha",
+        "Data Classification": "infa",
+        "DataSensitivity": "s1",
+        "ProjectName": "test",
+        "TechnicalContact": "me",
+        "ProjectContact": "me",
+        "ClientOrganization": "fha"
+      }
+    },
+    "resourceGroups": {
+      "value": {
+        "automation": "fha-automation-subscription",
+        "networking": "fha-networking-subscription",
+        "networkWatcher": "fha-NetworkWatcherRG-subscription",
+        "backupRecoveryVault": "fha-backup-subscription"
+      }
+    },
+    "automation": {
+      "value": {
+        "name": "fha-automation-generic-cloud"
+      }
+    },
+    "backupRecoveryVault": {
+      "value": {
+        "enabled": true,
+        "name": "fha-backup-vault-generic-cloud"
+      }
+    },
+    "hubNetwork": {
+      "value": {
+        "virtualNetworkId": "",
+        "rfc1918IPRange": "",
+        "rfc6598IPRange": "",
+        "egressVirtualApplianceIp": ""
+      }
+    },
+    "network": {
+      "value": {
+        "deployVnet": true,
+        "peerToHubVirtualNetwork": false,
+        "useRemoteGateway": false,
+        "name": "fha-vnet-generic-cloud",
+        "dnsServers": [
+          
+        ],
+        "addressPrefixes": [
+          "10.2.0.0/16"
+        ],
+        "subnets": [
+          {
+            "comments": "App Management Zone (OZ)",
+            "name": "appManagement",
+            "addressPrefix": "10.2.1.0/25",
+            "nsg": {
+              "enabled": true
+            },
+            "udr": {
+              "enabled": false
+            }
+          },
+          {
+            "comments": "Presentation Zone (PAZ)",
+            "name": "web",
+            "addressPrefix": "10.2.2.0/25",
+            "nsg": {
+              "enabled": true
+            },
+            "udr": {
+              "enabled": false
+            }
+          },
+          {
+            "comments": "Application Zone (RZ)",
+            "name": "app",
+            "addressPrefix": "10.2.3.0/25",
+            "nsg": {
+              "enabled": true
+            },
+            "udr": {
+              "enabled": false
+            }
+          },
+          {
+            "comments": "Data Zone (HRZ)",
+            "name": "data",
+            "addressPrefix": "10.2.4.0/25",
+            "nsg": {
+              "enabled": true
+            },
+            "udr": {
+              "enabled": false
+            }
+          },
+          {
+            "comments": "App Service",
+            "name": "appservice",
+            "addressPrefix": "10.2.5.0/25",
+            "nsg": {
+              "enabled": false
+            },
+            "udr": {
+              "enabled": false
+            },
+            "delegations": {
+              "serviceName": "Microsoft.Web/serverFarms"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

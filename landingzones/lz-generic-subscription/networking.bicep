@@ -192,52 +192,52 @@ param network object
 
 var hubVnetIdSplit = split(hubNetwork.virtualNetworkId, '/')
 
-var routesToHub = [
-  // Force Routes to Hub IPs (RFC1918 range) via FW despite knowing that route via peering
-  {
-    name: 'SpokeUdrHubRFC1918FWRoute'
-    properties: {
-      addressPrefix: hubNetwork.rfc1918IPRange
-      nextHopType: 'VirtualAppliance'
-      nextHopIpAddress: hubNetwork.egressVirtualApplianceIp
-    }
-  }
-  // Force Routes to Hub IPs (CGNAT range) via FW despite knowing that route via peering
-  {
-    name: 'SpokeUdrHubRFC6598FWRoute'
-    properties: {
-      addressPrefix: hubNetwork.rfc6598IPRange
-      nextHopType: 'VirtualAppliance'
-      nextHopIpAddress: hubNetwork.egressVirtualApplianceIp
-    }
-  }
-  {
-    name: 'RouteToEgressFirewall'
-    properties: {
-      addressPrefix: '0.0.0.0/0'
-      nextHopType: 'VirtualAppliance'
-      nextHopIpAddress: hubNetwork.egressVirtualApplianceIp
-    }
-  }
-]
+// var routesToHub = [
+//   // Force Routes to Hub IPs (RFC1918 range) via FW despite knowing that route via peering
+//   {
+//     name: 'SpokeUdrHubRFC1918FWRoute'
+//     properties: {
+//       addressPrefix: hubNetwork.rfc1918IPRange
+//       nextHopType: 'VirtualAppliance'
+//       nextHopIpAddress: hubNetwork.egressVirtualApplianceIp
+//     }
+//   }
+//   // Force Routes to Hub IPs (CGNAT range) via FW despite knowing that route via peering
+//   {
+//     name: 'SpokeUdrHubRFC6598FWRoute'
+//     properties: {
+//       addressPrefix: hubNetwork.rfc6598IPRange
+//       nextHopType: 'VirtualAppliance'
+//       nextHopIpAddress: hubNetwork.egressVirtualApplianceIp
+//     }
+//   }
+//   {
+//     name: 'RouteToEgressFirewall'
+//     properties: {
+//       addressPrefix: '0.0.0.0/0'
+//       nextHopType: 'VirtualAppliance'
+//       nextHopIpAddress: hubNetwork.egressVirtualApplianceIp
+//     }
+//   }
+// ]
 
 // Network Security Groups
 resource nsg 'Microsoft.Network/networkSecurityGroups@2021-02-01' = [for subnet in network.subnets: if (subnet.nsg.enabled) {
-  name: '${subnet.name}Nsg'
+  name: '${network.name}-${subnet.name}-nsg'
   location: location
   properties: {
     securityRules: []
   }
 }]
 
-// Route Tables
-resource udr 'Microsoft.Network/routeTables@2021-02-01' = {
-  name: 'RouteTable'
-  location: location
-  properties: {
-    routes: network.peerToHubVirtualNetwork ? routesToHub : null
-  }
-}
+// // Route Tables
+// resource udr 'Microsoft.Network/routeTables@2021-02-01' = {
+//   name: 'RouteTable'
+//   location: location
+//   properties: {
+//     routes: network.peerToHubVirtualNetwork ? routesToHub : null
+//   }
+// }
 
 // Virtual Network
 resource vnet 'Microsoft.Network/virtualNetworks@2021-02-01' = {
@@ -257,9 +257,9 @@ resource vnet 'Microsoft.Network/virtualNetworks@2021-02-01' = {
         networkSecurityGroup: (subnet.nsg.enabled) ? {
           id: nsg[i].id
         } : null
-        routeTable: (subnet.udr.enabled) ? {
-          id: udr.id
-        } : null
+        // routeTable: (subnet.udr.enabled) ? {
+        //   id: udr.id
+        // } : null
         delegations: contains(subnet, 'delegations') ? [
           {
             name: replace(subnet.delegations.serviceName, '/', '.')

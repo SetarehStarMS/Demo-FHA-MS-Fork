@@ -1,0 +1,406 @@
+{
+  "$schema": "http://json-schema.org/draft-06/schema#",
+
+  "definitions": {
+    "PlatformConnectivityVWANArchetypeDefinition": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "$schema": {
+          "type": "string",
+          "format": "uri",
+          "qt-uri-protocols": [
+            "https"
+          ],
+          "qt-uri-extensions": [
+            ".json"
+          ]
+        },
+        "contentVersion": {
+          "type": "string"
+        },
+        "parameters": {
+          "$ref": "#/definitions/Parameters"
+        }
+      },
+      "required": [
+        "$schema",
+        "contentVersion",
+        "parameters"
+      ],
+      "title": "PlatformConnectivityVWANArchetypeDefinition"
+    },
+    "Parameters": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "location": {
+          "$ref": "types/location.json#/definitions/Location"
+        },
+        "serviceHealthAlerts": {
+          "$ref": "types/serviceHealthAlerts.json#/definitions/ServiceHealthAlerts"
+        },
+        "securityCenter": {
+          "$ref": "types/securityCenter.json#/definitions/SecurityCenter"
+        },
+        "subscriptionRoleAssignments": {
+          "$ref": "types/subscriptionRoleAssignments.json#/definitions/SubscriptionRoleAssignments"
+        },
+        "subscriptionBudget": {
+          "$ref": "types/subscriptionBudget.json#/definitions/SubscriptionBudget"
+        },
+        "subscriptionTags": {
+          "$ref": "types/subscriptionTags.json#/definitions/SubscriptionTags"
+        },
+        "resourceTags": {
+          "$ref": "types/resourceTags.json#/definitions/ResourceTags"
+        },
+        "VWAN": {
+          "$ref": "types/VWAN.json#/definitions/VWAN"
+        },
+        "VirtualWanHUBs": {
+          "$ref": "types/VirtualWanHUBs.json#/definitions/VirtualWanHUBs"
+        },
+        "FirewallPublicIPsConfig": {
+          "$ref": "#/definitions/FirewallPublicIPsConfig"
+        },
+        "SharedConnServicesPrimaryRegionConfig": {
+          "$ref": "#/definitions/SharedConnServicesPrimaryRegionConfig"
+        },
+        "SharedConnServicesSecondaryRegionConfig": {
+          "$ref": "#/definitions/SharedConnServicesSecondaryRegionConfig"
+        },
+        "fwUsername": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          }
+        },
+        "fwPassword": {
+          "type": "object",
+          "properties": {
+            "value": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "required": [
+        "serviceHealthAlerts",
+        "subscriptionBudget",
+        "subscriptionRoleAssignments",
+        "subscriptionTags",
+        "resourceTags",
+        "VWAN",
+        "VirtualWanHUBs",
+        "FirewallPublicIPsConfig",
+        "SharedConnServicesPrimaryRegionConfig"      
+      ],
+      "title": "Parameters"
+    },
+    "FirewallPublicIPsConfig": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "object",
+          "properties": {
+            "DeployPublicIPs": {
+              "type":"boolean"
+            },
+            "ResourceGroupName": {
+              "type":"string"
+            },
+            "PublicIPNames": {
+              "type":"array"
+            }
+          },
+          "required": [
+            "DeployPublicIPs",
+            "ResourceGroupName",
+            "PublicIPNames"
+          ]
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "SharedConnServicesPrimaryRegionConfig": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "object",
+          "properties": {
+            "DeploymentRegion": {
+              "type": "string"
+            },
+            "ResourceGroupName": {
+              "type": "string"
+            },
+            "BastionConfig": {
+              "$ref": "#/definitions/BastionConfig"
+            },
+            "JumpboxConfig": {
+              "$ref": "#/definitions/JumpboxConfig"
+            },
+            "NetworkConfig": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "addressPrefixes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "dnsServers": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "subnets": {
+                  "type": "object",
+                  "properties": {
+                    "AzureBastionSubnet": {
+                      "$ref": "#/definitions/requiredSubnet"
+                    },
+                    "ManagementSubnet": {
+                      "$ref": "#/definitions/requiredSubnet"
+                    },                    
+                    "optional": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/optionalSubnet"
+                      }
+                    }
+                  },
+                  "required": [
+                    "AzureBastionSubnet",
+                    "ManagementSubnet",                    
+                    "optional"
+                  ]
+                }
+              },
+              "required": [
+                "name",
+                "addressPrefixes",
+                "dnsServers",
+                "subnets"
+              ]
+            }
+          },
+          "required": [
+            "DeploymentRegion",
+            "ResourceGroupName",
+            "BastionConfig",
+            "NetworkConfig",
+            "JumpboxConfig"            
+          ]
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "SharedConnServicesSecondaryRegionConfig": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "object",
+          "properties": {
+            "DeploySharedConnServicesSecondaryRegion": {
+              "type": "boolean"
+            },
+            "DeploymentRegion": {
+              "type": "string"
+            },
+            "ResourceGroupName": {
+              "type": "string"
+            },
+            "BastionConfig": {
+              "$ref": "#/definitions/BastionConfig"
+            },
+            "JumpboxConfig": {
+              "$ref": "#/definitions/JumpboxConfig"
+            },
+            "NetworkConfig": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "addressPrefixes": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "dnsServers": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "subnets": {
+                  "type": "object",
+                  "properties": {
+                    "AzureBastionSubnet": {
+                      "$ref": "#/definitions/requiredSubnet"
+                    },
+                    "ManagementSubnet": {
+                      "$ref": "#/definitions/requiredSubnet"
+                    },                    
+                    "optional": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/definitions/optionalSubnet"
+                      }
+                    }
+                  },
+                  "required": [
+                    "AzureBastionSubnet",
+                    "ManagementSubnet",
+                    "optional"
+                  ]
+                }
+              },
+              "required": [
+                "name",
+                "addressPrefixes",
+                "dnsServers",
+                "subnets"
+              ]
+            }
+          },
+          "required": [
+            "DeploymentRegion",
+            "ResourceGroupName",
+            "BastionConfig",
+            "NetworkConfig",
+            "JumpboxConfig"            
+          ]
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "BastionConfig": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "sku": {
+          "type": "string"
+        },
+        "scaleUnits": {
+          "type": "integer"
+        },
+        "ResourceGroupName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "enabled",
+        "name",
+        "sku",
+        "scaleUnits",
+        "ResourceGroupName"
+      ]
+    },
+    "JumpboxConfig": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "VMSize": {
+          "type": "string"
+        },
+        "ResourceGroupName": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "enabled",
+        "name",
+        "VMSize",
+        "ResourceGroupName"
+      ]
+    },
+    "requiredSubnet": {
+      "type": "object",
+      "properties": {
+        "comments": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "addressPrefix": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "comments",
+        "name",
+        "addressPrefix"
+      ]
+    },
+    "optionalSubnet": {
+      "type": "object",
+      "properties": {
+        "comments": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "addressPrefix": {
+          "type": "string"
+        },
+        "nsg": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "enabled"
+          ]
+        },
+        "delegations": {
+          "type": "object",
+          "properties": {
+            "serviceName": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "serviceName"
+          ]
+        }
+      },
+      "required": [
+        "comments",
+        "name",
+        "addressPrefix",
+        "nsg",
+        "udr"
+      ]
+    }
+  }
+}
