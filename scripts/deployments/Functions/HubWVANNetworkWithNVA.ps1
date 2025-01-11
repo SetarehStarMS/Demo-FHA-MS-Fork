@@ -45,7 +45,7 @@ function Set-VWANNetwork-With-NVA {
 
   $SchemaFilePath = "$($Context.SchemaDirectory)/landingzones/lz-platform-connectivity-vwan-nva.json"
   
-  Write-Output "Validation JSON parameter configuration using $SchemaFilePath"
+  # Write-Output "Validation JSON parameter configuration using $SchemaFilePath"
   Get-Content -Raw $ConfigurationFilePath | Test-Json -SchemaFile $SchemaFilePath
 
   # Load networking configuration
