@@ -35,6 +35,9 @@ jobs:
       run: |
         Install-Module Az -Force
         Install-Module powershell-yaml -Force
+        Install-Module -Name PowerShellGet -Force -AllowClobber
+        Install-Module -Name PackageManagement -Force -AllowClobber
+        [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
     - name: Deploy VWAN Network with NVA
       run: |
